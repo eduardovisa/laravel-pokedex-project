@@ -12,7 +12,8 @@ class PokemonesController extends Controller
      */
     public function index()
     {
-        //
+        $pokemones = Pokemones::all();
+        return response()->json($pokemones);
     }
 
     /**
@@ -20,7 +21,7 @@ class PokemonesController extends Controller
      */
     public function create()
     {
-        //
+        return view('pokedex.create');
     }
 
     /**
@@ -28,7 +29,10 @@ class PokemonesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosPokemon = request()->except('_token');
+        Pokemones::insert($datosPokemon);
+
+        return response()->json($datosPokemon);
     }
 
     /**
