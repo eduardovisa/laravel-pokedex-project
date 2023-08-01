@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PokemonesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +16,3 @@ use App\Http\Controllers\PokemonesController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-// Route::get('/create', [PokemonesController::class, 'create']);
-
-Route::resource('api/pokedex', PokemonesController::class);
