@@ -7,63 +7,38 @@ use Illuminate\Http\Request;
 
 class PokemonesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $pokemones = Pokemones::all();
-        return response()->json($pokemones);
+    public function index(Request $request){
+        $pokemon = New Pokemones();
+
+        $pokemon->Nombre=$request->Nombre;
+        $pokemon->Imagen=$request->Imagen;
+        $pokemon->Valor=$request->Valor;
+
+        $data=$pokemon->save();
+        if (!$data) {
+            return response()->json([
+                'status'=>404,
+                'error'=>'Ocurrio un problema'
+            ]);
+        } else {
+            return response()->json([
+                'status'=>200,
+                'message'=>'Data Successfully saved!'
+            ]);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('pokedex.create');
-    }
+    public function pokemones(){
+        $pokemon = Pokemones::all();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $datosPokemon = request()->except('_token');
-        Pokemones::insert($datosPokemon);
-
-        return response()->json($datosPokemon);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pokemones $pokemones)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pokemones $pokemones)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Pokemones $pokemones)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Pokemones $pokemones)
-    {
-        //
+        if (isset($pokemon)) {
+            return response()->json([
+                'pokemones'=>$pokemon
+            ]);
+        } else {
+            return response()->json([
+                'error'=>'Data not found!',
+            ]);
+        }
     }
 }
