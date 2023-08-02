@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('pokemones', function (Blueprint $table) {
             $table->id();
 
-            $table->string('Nombre');
-            $table->string('Imagen');
-            $table->string('Valor');
+            $table->string('nombre');
+            $table->string('imagen');
+            $table->string('valor');
 
             $table->timestamps();
         });

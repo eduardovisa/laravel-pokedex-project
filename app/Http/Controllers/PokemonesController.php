@@ -10,9 +10,9 @@ class PokemonesController extends Controller
     public function index(Request $request){
         $pokemon = New Pokemones();
 
-        $pokemon->Nombre=$request->Nombre;
-        $pokemon->Imagen=$request->Imagen;
-        $pokemon->Valor=$request->Valor;
+        $pokemon->nombre=$request->nombre;
+        $pokemon->imagen=$request->imagen;
+        $pokemon->valor=$request->valor;
 
         $data=$pokemon->save();
         if (!$data) {
