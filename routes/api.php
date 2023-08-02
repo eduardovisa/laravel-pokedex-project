@@ -15,8 +15,12 @@ use App\Http\Controllers\PokemonesController;
 |
 */
 
-Route::get('/pokemones', [PokemonesController::class, 'pokemones'])->middleware('cors');
-Route::post('index', [PokemonesController::class, 'index'])->middleware('cors');
+Route::controller(PokemonesController::class)->group(function () {
+    Route::get('pokemones', 'pokemones');
+    Route::post('index', 'index');
+    Route::delete('delete', 'delete');
+});
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -41,4 +41,19 @@ class PokemonesController extends Controller
             ]);
         }
     }
+
+    public function delete(){
+        $estado = Pokemones::truncate();
+        if (!$estado) {
+            return response()->json([
+                'status'=>404,
+                'error'=>'Ocurrio un problema'
+            ]);
+        } else {
+            return response()->json([
+                'status'=>200,
+                'message'=>'Data Successfully deleted!'
+            ]);
+        }
+    }
 }
